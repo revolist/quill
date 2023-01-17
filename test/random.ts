@@ -1,5 +1,4 @@
 import Delta from 'quill-delta';
-import '@types/jest';
 import TableEmbed, {
   CellData,
   TableData,
