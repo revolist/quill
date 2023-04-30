@@ -61,15 +61,15 @@ const jsRules = {
 
 const svgRules = {
   test: /\.svg$/,
-  include: [path.resolve(__dirname, '../assets/icons')],
-  use: [
-    {
-      loader: 'html-loader',
-      options: {
-        minimize: true,
-      },
-    },
-  ],
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'assets/icons/',
+            },
+          },
+    ],
 };
 
 const stylRules = {
@@ -105,7 +105,10 @@ const baseConfig = {
     extensions: ['.js', '.styl', '.ts'],
   },
   module: {
-    rules: [jsRules, stylRules, svgRules, tsRules],
+    rules: [jsRules, stylRules, svgRules, tsRules,  {
+      resourceQuery: /raw/,
+      type: 'asset/source',
+    }],
     noParse: [
       /\/node_modules\/clone\/clone\.js$/,
       /\/node_modules\/eventemitter3\/index\.js$/,
