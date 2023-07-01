@@ -251,7 +251,11 @@ class Keyboard extends Module<KeyboardOptions> {
     const length = /[\uD800-\uDBFF][\uDC00-\uDFFF]$/.test(context.prefix)
       ? 2
       : 1;
-    if (range.index === 0 || this.quill.getLength() <= 1) return;
+    if (range.index === 0 || this.quill.getLength() <= 1) {
+      if (!Object.keys(context.format).length) {
+        return;
+      }
+    }
     let formats = {};
     const [line] = this.quill.getLine(range.index);
     let delta = new Delta().retain(range.index - length).delete(length);
@@ -805,4 +809,12 @@ function tableSide(table, row, cell, offset) {
   return null;
 }
 
-export { Keyboard as default, SHORTKEY, normalize, deleteRange };
+export {
+  Keyboard as default,
+  SHORTKEY,
+  normalize,
+  deleteRange,
+  KeyboardOptions,
+  Binding,
+  NormalizedBinding,
+};

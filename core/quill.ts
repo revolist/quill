@@ -540,6 +540,12 @@ class Quill {
   insertText(
     index: number,
     text: string,
+    name: string | unknown | Record<string, unknown> | EmitterSource,
+    source?: EmitterSource,
+  ): Delta;
+  insertText(
+    index: number,
+    text: string,
     name: string | EmitterSource,
     value?: unknown,
     source?: EmitterSource,
